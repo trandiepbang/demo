@@ -12,8 +12,7 @@ import java.util.List;
 import bangdieptran.demo.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import controller.Controller;
+import model.MvcModel;
 import presenter.Presenter;
 
 public class DemoDesignPattern extends AppCompatActivity implements IView {
@@ -34,7 +33,7 @@ public class DemoDesignPattern extends AppCompatActivity implements IView {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_demo_design_pattern);
     ButterKnife.bind(this);
-    presenter = new Presenter(this, new Controller(DemoDesignPattern.this));
+    presenter = new Presenter(this, new MvcModel(getApplicationContext()));
     createButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -49,8 +48,6 @@ public class DemoDesignPattern extends AppCompatActivity implements IView {
         presenter.deleteData("tran diep bang");
       }
     });
-
-
 
 
   }
