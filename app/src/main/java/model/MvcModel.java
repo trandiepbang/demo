@@ -1,5 +1,7 @@
 package model;
 
+import org.greenrobot.eventbus.EventBus;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -7,13 +9,17 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import event.MessageEvent;
 import value.DefaultValue;
 
 /**
  * Created by darklegend on 7/6/17.
  */
 
-public class MvcModel {
+public class MvcModel implements IModel {
 
   private final SQLiteOpenHelper helper;
 
@@ -44,14 +50,41 @@ public class MvcModel {
 
   public void addTask(ContentValues data) {
     this.database.insert(DefaultValue.value.DB_table_name, null, data);
+    this.notifyChange(getTask().toString());
+    //Notify Data Change
   }
 
   public void deleteTask(final String field_params) {
     this.database.delete(DefaultValue.value.DB_table_name, field_params, null);
+    this.notifyChange(getData().toString());
+    //Notify Data Change
+
+  }
+
+
+  private List<String> getData() {
+    List<String> task = new ArrayList<>();
+    Cursor c = getTask();
+    if (c != null) {
+      c.moveToFirst();
+      while (c.isAfterLast() == false) {
+        task.add(c.getString(0));
+        c.moveToNext();
+      }
+      c.close();
+    }
+    return task;
+
   }
 
   public Cursor getTask() {
     final Cursor c = this.database.query(DefaultValue.value.DB_table_name, new String[]{"title"}, null, null, null, null, null);
     return c;
   }
+
+  @Override
+  public void notifyChange(final String data) {
+    EventBus.getDefault().post(new MessageEvent(data));
+  }
+
 }

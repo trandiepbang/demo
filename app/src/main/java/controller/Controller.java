@@ -19,8 +19,7 @@ public class Controller {
 
   private List<String> tasks;
 
-  public Controller(final Context context) {
-    model = new MvcModel(context);
+  public Controller(final MvcModel mvcModel) {
     tasks = new ArrayList<>();
   }
 
@@ -34,19 +33,6 @@ public class Controller {
     model.deleteTask("title='" + title + "'");
   }
 
-  public List<String> getTasks() {
-    Cursor c = model.getTask();
-    tasks.clear();
-    if (c != null) {
-      c.moveToFirst();
-      while (c.isAfterLast() == false) {
-        tasks.add(c.getString(0));
-        c.moveToNext();
-      }
-      c.close();
-    }
-    return tasks;
 
-  }
 
 }
