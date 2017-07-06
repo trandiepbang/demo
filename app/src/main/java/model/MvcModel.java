@@ -54,4 +54,6 @@ public class MvcModel {
     final Cursor c = this.database.query(DefaultValue.value.DB_table_name, new String[]{"title"}, null, null, null, null, null);
     return c;
   }
+
+  //
 }
