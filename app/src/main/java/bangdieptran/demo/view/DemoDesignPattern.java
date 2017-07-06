@@ -12,7 +12,7 @@ import java.util.List;
 import bangdieptran.demo.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import model.MvcModel;
+import model.MvpModel;
 import presenter.Presenter;
 
 public class DemoDesignPattern extends AppCompatActivity implements IView {
@@ -33,7 +33,7 @@ public class DemoDesignPattern extends AppCompatActivity implements IView {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_demo_design_pattern);
     ButterKnife.bind(this);
-    presenter = new Presenter(this, new MvcModel(getApplicationContext()));
+    presenter = new Presenter(this, new MvpModel(getApplicationContext()));
     createButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {

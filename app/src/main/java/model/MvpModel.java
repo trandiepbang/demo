@@ -13,7 +13,7 @@ import value.DefaultValue;
  * Created by darklegend on 7/6/17.
  */
 
-public class MvcModel {
+public class MvpModel {
 
   private final SQLiteOpenHelper helper;
 
@@ -22,7 +22,7 @@ public class MvcModel {
 
   private final SQLiteDatabase database;
 
-  public MvcModel(final Context mContext) {
+  public MvpModel(final Context mContext) {
     this.helper = new SQLiteOpenHelper(mContext, DefaultValue.value.DB_NAME, null, DefaultValue.value.DB_version) {
       @Override
       public void onCreate(SQLiteDatabase db) {
