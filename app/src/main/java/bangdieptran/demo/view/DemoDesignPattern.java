@@ -6,39 +6,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.util.List;
+
 import bangdieptran.demo.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import controller.Controller;
+import presenter.Presenter;
 
-public class DemoDesignPattern extends AppCompatActivity {
-
-
-  private Controller mvcController;
+public class DemoDesignPattern extends AppCompatActivity implements IView {
 
   @Nullable
   @BindView(R.id.data_created) TextView created;
 
   @Nullable
   @BindView(R.id.data_deleted) TextView deleted;
-
+  Presenter presenter;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_demo_design_pattern);
-    ButterKnife.bind(this);
-    mvcController = new Controller(DemoDesignPattern.this);
-    mvcController.addTask("tran diep bang");
-    //Log.d("data ", mvcController.getTasks().toString());
+    presenter = new Presenter(this,new Controller(DemoDesignPattern.this));
+    presenter.addData("tran diep bang");
 
-    created.setText(mvcController.getTasks().toString());
-    mvcController.deleteTask("tran diep bang");
+  }
 
-    Log.d("data after deleted", mvcController.getTasks().toString());
-
-    deleted.setText(mvcController.getTasks().toString());
-
-
-
+  @Override
+  public void onDataReturn(List<String> data) {
+    created.setText(data.toString());
   }
 }
