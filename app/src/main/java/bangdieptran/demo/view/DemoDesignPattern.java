@@ -3,7 +3,6 @@ package bangdieptran.demo.view;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
 
 import java.util.List;
@@ -21,13 +20,19 @@ public class DemoDesignPattern extends AppCompatActivity implements IView {
 
   @Nullable
   @BindView(R.id.data_deleted) TextView deleted;
+
   Presenter presenter;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_demo_design_pattern);
-    presenter = new Presenter(this,new Controller(DemoDesignPattern.this));
+    ButterKnife.bind(this);
+    presenter = new Presenter(this, new Controller(DemoDesignPattern.this));
     presenter.addData("tran diep bang");
+
+
+    presenter.deleteData("tran diep bang");
 
   }
 

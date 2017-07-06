@@ -7,5 +7,6 @@ import java.util.List;
  */
 
 public interface IView {
-   void onDataReturn(final List<String> data);
+
+  void onDataReturn(final List<String> data);
 }
