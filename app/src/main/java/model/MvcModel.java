@@ -50,14 +50,12 @@ public class MvcModel implements IModel {
 
   public void addTask(ContentValues data) {
     this.database.insert(DefaultValue.value.DB_table_name, null, data);
-    this.notifyChange(getTask().toString());
-    //Notify Data Change
+    this.notifyChange(getData().toString());
   }
 
   public void deleteTask(final String field_params) {
     this.database.delete(DefaultValue.value.DB_table_name, field_params, null);
     this.notifyChange(getData().toString());
-    //Notify Data Change
 
   }
 
