@@ -21,6 +21,7 @@ public class Controller {
 
   public Controller(final MvcModel mvcModel) {
     tasks = new ArrayList<>();
+    this.model = mvcModel;
   }
 
   public void addTask(final String title) {
