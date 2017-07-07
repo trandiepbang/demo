@@ -13,6 +13,7 @@ import bangdieptran.demo.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import model.MvpModel;
+import presenter.IPresenter;
 import presenter.Presenter;
 
 public class DemoActivity extends AppCompatActivity implements IView {
@@ -32,7 +33,7 @@ public class DemoActivity extends AppCompatActivity implements IView {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_demo_design_pattern);
     ButterKnife.bind(this);
-    final Presenter presenter = new Presenter(this, new MvpModel(getApplicationContext()));
+    final IPresenter presenter = new Presenter(this, new MvpModel(getApplicationContext()));
     createButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
