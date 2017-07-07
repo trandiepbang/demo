@@ -1,5 +1,7 @@
 package bangdieptran.demo.view;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -10,14 +12,8 @@ import java.util.List;
 
 import bangdieptran.demo.R;
 import butterknife.BindView;
-import presenter.IPresenter;
 
-public class DemoActivity extends BaseActivity {
-
-  @Override
-  protected int getLayoutId() {
-    return R.layout.activity_demo_design_pattern;
-  }
+public class DemoGetDataActivity extends BaseActivity {
 
   @Nullable
   @BindView(R.id.data_created) TextView dataCreatedText;
@@ -28,15 +24,13 @@ public class DemoActivity extends BaseActivity {
   @Nullable
   @BindView(R.id.deleteButton) Button deleteButton;
 
-  @Nullable
-  @BindView(R.id.startButton) Button startButton;
-
-  IPresenter presenter;
+  public static Intent newIntent(Activity activity) {
+    return new Intent(activity, DemoGetDataActivity.class);
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
     presenter = getPresenter();
 
     createButton.setOnClickListener(new View.OnClickListener() {
@@ -53,12 +47,11 @@ public class DemoActivity extends BaseActivity {
       }
     });
 
-    startButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        startActivity(DemoGetDataActivity.newIntent(DemoActivity.this));
-      }
-    });
+  }
+
+  @Override
+  protected int getLayoutId() {
+    return R.layout.activity_demo_get_data;
   }
 
   @Override
