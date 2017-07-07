@@ -7,7 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import value.DefaultValue;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by darklegend on 7/6/17.
@@ -15,15 +16,19 @@ import value.DefaultValue;
 
 public class MvpModel {
 
+  private static final String DB_NAME = "bang_demo.db";
+  private static final int DB_VERSION = 1;
+  private static final String DB_TABLE_NAME = "bangbang";
   private final SQLiteOpenHelper helper;
 
-  private static final String DB_CREATE_QUERY = "CREATE TABLE " + DefaultValue.value.DB_table_name
+  private static final String DB_CREATE_QUERY =
+      "CREATE TABLE " + DB_TABLE_NAME
       + " (id integer primary key autoincrement, title text not null);";
 
   private final SQLiteDatabase database;
 
   public MvpModel(final Context mContext) {
-    this.helper = new SQLiteOpenHelper(mContext, DefaultValue.value.DB_NAME, null, DefaultValue.value.DB_version) {
+    this.helper = new SQLiteOpenHelper(mContext, DB_NAME, null, DB_VERSION) {
       @Override
       public void onCreate(SQLiteDatabase db) {
         Log.d("On create table", DB_CREATE_QUERY);
@@ -33,7 +38,7 @@ public class MvpModel {
       @Override
       public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         Log.d("On upgrade table", "");
-        db.execSQL("DROP TABLE IF EXISTS " + DefaultValue.value.DB_table_name);
+        db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE_NAME);
         this.onCreate(db);
       }
 
@@ -42,16 +47,26 @@ public class MvpModel {
   }
 
 
-  public void addTask(ContentValues data) {
-    this.database.insert(DefaultValue.value.DB_table_name, null, data);
+  public long addTask(ContentValues data) {
+    return this.database.insert(DB_TABLE_NAME, null, data);
   }
 
-  public void deleteTask(final String field_params) {
-    this.database.delete(DefaultValue.value.DB_table_name, field_params, null);
+  public long deleteTask(final String data) {
+    String data_to_delete = "title='" + data + "'";
+    return this.database.delete(DB_TABLE_NAME, data_to_delete, null);
   }
 
-  public Cursor getTask() {
-    final Cursor c = this.database.query(DefaultValue.value.DB_table_name, new String[]{"title"}, null, null, null, null, null);
-    return c;
+  public List<String> getTask() {
+    final Cursor c = this.database.query(DB_TABLE_NAME, new String[]{"title"}, null, null, null, null, null);
+    List<String> tasks = new ArrayList<>();
+    if (c != null) {
+      c.moveToFirst();
+      while (c.isAfterLast() == false) {
+        tasks.add(c.getString(0));
+        c.moveToNext();
+      }
+      c.close();
+    }
+    return tasks;
   }
 }

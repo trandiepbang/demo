@@ -26,14 +26,13 @@ public class DemoDesignPattern extends AppCompatActivity implements IView {
   @Nullable
   @BindView(R.id.deleteButton) Button deleteButton;
 
-  Presenter presenter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_demo_design_pattern);
     ButterKnife.bind(this);
-    presenter = new Presenter(this, new MvpModel(getApplicationContext()));
+    final Presenter presenter = new Presenter(this, new MvpModel(getApplicationContext()));
     createButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {

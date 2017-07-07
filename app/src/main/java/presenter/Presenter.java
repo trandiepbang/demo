@@ -1,10 +1,6 @@
 package presenter;
 
 import android.content.ContentValues;
-import android.database.Cursor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import bangdieptran.demo.view.IView;
 import model.MvpModel;
@@ -29,33 +25,12 @@ public class Presenter implements IPresenter {
     final ContentValues data = new ContentValues();
     data.put("title", title);
     this.mvpModel.addTask(data);
-    this.returnData();
+    this.iView.onDataReturn(this.mvpModel.getTask());
   }
 
   @Override
   public void deleteData(String title) {
-    this.mvpModel.deleteTask("title='" + title + "'");
-    this.returnData();
-  }
-
-
-  private List<String> getTasks() {
-    List<String> task = new ArrayList<>();
-    Cursor c = this.mvpModel.getTask();
-    if (c != null) {
-      c.moveToFirst();
-      while (c.isAfterLast() == false) {
-        task.add(c.getString(0));
-        c.moveToNext();
-      }
-      c.close();
-    }
-    return task;
-
-  }
-
-  @Override
-  public void returnData() {
-    this.iView.onDataReturn(getTasks());
+    this.mvpModel.deleteTask(title);
+    this.iView.onDataReturn(this.mvpModel.getTask());
   }
 }
