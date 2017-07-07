@@ -11,11 +11,11 @@ import model.MvpModel;
 
 public class Presenter implements IPresenter {
 
-  private IView iView;
+  private final IView iView;
 
-  private MvpModel mvpModel;
+  private final MvpModel mvpModel;
 
-  public Presenter(final IView iView, final MvpModel mvpModel) {
+  public Presenter(IView iView, MvpModel mvpModel) {
     this.iView = iView;
     this.mvpModel = mvpModel;
   }

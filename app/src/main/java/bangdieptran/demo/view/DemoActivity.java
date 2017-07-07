@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
 import model.MvpModel;
 import presenter.Presenter;
 
-public class DemoDesignPattern extends AppCompatActivity implements IView {
+public class DemoActivity extends AppCompatActivity implements IView {
 
   @Nullable
   @BindView(R.id.data_created) TextView created;
