@@ -10,6 +10,7 @@ import model.MvpModel;
 public class Presenter implements IPresenter {
 
   private final IView iView;
+
   private final MvpModel mvpModel;
 
   public Presenter(IView iView, MvpModel mvpModel) {

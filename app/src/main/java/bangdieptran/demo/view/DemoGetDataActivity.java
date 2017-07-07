@@ -12,38 +12,32 @@ import java.util.List;
 
 import bangdieptran.demo.R;
 import butterknife.BindView;
+import presenter.IQueryPresenter;
+import presenter.QueryPresenter;
 
-public class DemoGetDataActivity extends BaseActivity {
-
-  @Nullable
-  @BindView(R.id.data_created) TextView dataCreatedText;
-
-  @Nullable
-  @BindView(R.id.createButton) Button createButton;
+public class DemoGetDataActivity extends BaseActivity implements IView {
 
   @Nullable
-  @BindView(R.id.deleteButton) Button deleteButton;
+  @BindView(R.id.showDataTextView) TextView showDataTextView;
+
+  @Nullable
+  @BindView(R.id.showButton) Button showButton;
+
 
   public static Intent newIntent(Activity activity) {
     return new Intent(activity, DemoGetDataActivity.class);
   }
 
+  IQueryPresenter presenter;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    presenter = getPresenter();
-
-    createButton.setOnClickListener(new View.OnClickListener() {
+    presenter = new QueryPresenter(this, getModel());
+    showButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        presenter.addData("tran diep bang");
-      }
-    });
-
-    deleteButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        presenter.deleteData("tran diep bang");
+        presenter.showData();
       }
     });
 
@@ -56,6 +50,7 @@ public class DemoGetDataActivity extends BaseActivity {
 
   @Override
   public void onDataReturn(List<String> data) {
-    dataCreatedText.setText(data.toString());
+    showDataTextView.setText(data.toString());
   }
+
 }

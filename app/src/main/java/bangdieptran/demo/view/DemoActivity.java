@@ -11,8 +11,9 @@ import java.util.List;
 import bangdieptran.demo.R;
 import butterknife.BindView;
 import presenter.IPresenter;
+import presenter.Presenter;
 
-public class DemoActivity extends BaseActivity {
+public class DemoActivity extends BaseActivity implements IView {
 
   @Override
   protected int getLayoutId() {
@@ -36,7 +37,7 @@ public class DemoActivity extends BaseActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    presenter = getPresenter();
+    presenter = new Presenter(this, getModel());
     createButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
