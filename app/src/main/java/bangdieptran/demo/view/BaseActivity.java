@@ -16,7 +16,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     ButterKnife.bind(this);
   }
 
-  public MvpModel getModel() {
+  final public MvpModel getModel() {
     return new MvpModel(getApplicationContext());
   }
 
