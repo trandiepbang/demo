@@ -30,8 +30,8 @@ public class MvpModel {
 
   private final SQLiteDatabase database;
 
-  public MvpModel(final Context mContext) {
-    this.helper = new SQLiteOpenHelper(mContext, DB_NAME, null, DB_VERSION) {
+  public MvpModel(final Context context) {
+    this.helper = new SQLiteOpenHelper(context.getApplicationContext(), DB_NAME, null, DB_VERSION) {
       @Override
       public void onCreate(SQLiteDatabase db) {
         Log.d("On create table", DB_CREATE_QUERY);
