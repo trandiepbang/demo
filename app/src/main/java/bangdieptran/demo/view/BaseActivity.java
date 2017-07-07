@@ -11,7 +11,7 @@ import presenter.Presenter;
 
 public abstract class BaseActivity extends AppCompatActivity implements IView {
 
-  IPresenter presenter;
+  public IPresenter presenter;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IView {
 
   }
 
-  protected IPresenter getPresenter() {
+  final protected IPresenter getPresenter() {
     return presenter;
   }
 

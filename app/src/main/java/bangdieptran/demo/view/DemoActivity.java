@@ -36,9 +36,7 @@ public class DemoActivity extends BaseActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
     presenter = getPresenter();
-
     createButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
