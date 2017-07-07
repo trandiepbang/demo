@@ -9,5 +9,4 @@ public interface IPresenter {
   void addData(final String title);
 
   void deleteData(final String title);
-
 }

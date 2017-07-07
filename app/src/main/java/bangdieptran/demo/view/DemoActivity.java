@@ -19,7 +19,7 @@ import presenter.Presenter;
 public class DemoActivity extends AppCompatActivity implements IView {
 
   @Nullable
-  @BindView(R.id.data_created) TextView created;
+  @BindView(R.id.data_created) TextView dataCreatedText;
 
   @Nullable
   @BindView(R.id.createButton) Button createButton;
@@ -27,18 +27,18 @@ public class DemoActivity extends AppCompatActivity implements IView {
   @Nullable
   @BindView(R.id.deleteButton) Button deleteButton;
 
+  IPresenter presenter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_demo_design_pattern);
     ButterKnife.bind(this);
-    final IPresenter presenter = new Presenter(this, new MvpModel(getApplicationContext()));
+    presenter = new Presenter(this, new MvpModel(getApplicationContext()));
     createButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         presenter.addData("tran diep bang");
-
       }
     });
 
@@ -48,12 +48,10 @@ public class DemoActivity extends AppCompatActivity implements IView {
         presenter.deleteData("tran diep bang");
       }
     });
-
-
   }
 
   @Override
   public void onDataReturn(List<String> data) {
-    created.setText(data.toString());
+    dataCreatedText.setText(data.toString());
   }
 }

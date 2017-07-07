@@ -1,7 +1,5 @@
 package presenter;
 
-import android.content.ContentValues;
-
 import bangdieptran.demo.view.IView;
 import model.MvpModel;
 
@@ -22,9 +20,7 @@ public class Presenter implements IPresenter {
 
   @Override
   public void addData(String title) {
-    final ContentValues data = new ContentValues();
-    data.put("title", title);
-    this.mvpModel.addTask(data);
+    this.mvpModel.addTask(title);
     this.iView.onDataReturn(this.mvpModel.getTask());
   }
 

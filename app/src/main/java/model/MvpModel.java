@@ -49,9 +49,10 @@ public class MvpModel {
     this.database = this.helper.getWritableDatabase();
   }
 
-
-  public long addTask(ContentValues data) {
-    return this.database.insert(DB_TABLE_NAME, null, data);
+  public long addTask(final String data) {
+    final ContentValues contentValues = new ContentValues();
+    contentValues.put("title", data);
+    return this.database.insert(DB_TABLE_NAME, null, contentValues);
   }
 
   public long deleteTask(final String data) {
