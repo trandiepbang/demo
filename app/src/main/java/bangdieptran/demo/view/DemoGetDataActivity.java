@@ -12,10 +12,10 @@ import java.util.List;
 
 import bangdieptran.demo.R;
 import butterknife.BindView;
-import presenter.IQueryPresenter;
+import presenter.Presenter;
 import presenter.QueryPresenter;
 
-public class DemoGetDataActivity extends BaseActivity implements IView {
+public class DemoGetDataActivity extends BaseActivity implements IGetDataView {
 
   @Nullable
   @BindView(R.id.showDataTextView) TextView showDataTextView;
@@ -23,24 +23,24 @@ public class DemoGetDataActivity extends BaseActivity implements IView {
   @Nullable
   @BindView(R.id.showButton) Button showButton;
 
-
   public static Intent newIntent(Activity activity) {
     return new Intent(activity, DemoGetDataActivity.class);
   }
 
-  IQueryPresenter presenter;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    presenter = new QueryPresenter(this, getModel());
     showButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        presenter.showData();
+        getPresenter().showData();
       }
     });
+  }
 
+  @Override
+  protected Presenter getPresenter() {
+    return new QueryPresenter(this, getModel());
   }
 
   @Override

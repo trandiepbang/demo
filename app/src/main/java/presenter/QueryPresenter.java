@@ -1,25 +1,25 @@
 package presenter;
 
-import bangdieptran.demo.view.IView;
+import bangdieptran.demo.view.IGetDataView;
 import model.MvpModel;
 
 /**
  * Created by darklegend on 7/7/17.
  */
 
-public class QueryPresenter implements IQueryPresenter {
+public class QueryPresenter extends Presenter {
 
-  private final IView iView;
+  private final IGetDataView iGetDataView;
 
   private final MvpModel mvpModel;
 
-  public QueryPresenter(IView iView, MvpModel mvpModel) {
-    this.iView = iView;
+  public QueryPresenter(IGetDataView iGetDataView, MvpModel mvpModel) {
+    this.iGetDataView = iGetDataView;
     this.mvpModel = mvpModel;
   }
 
   @Override
   public void showData() {
-    this.iView.onDataReturn(mvpModel.getTask());
+    this.iGetDataView.onDataReturn(mvpModel.getTask());
   }
 }

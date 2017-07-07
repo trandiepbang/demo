@@ -10,7 +10,7 @@ import java.util.List;
 
 import bangdieptran.demo.R;
 import butterknife.BindView;
-import presenter.IPresenter;
+import presenter.ActionPresenter;
 import presenter.Presenter;
 
 public class DemoActivity extends BaseActivity implements IView {
@@ -32,23 +32,20 @@ public class DemoActivity extends BaseActivity implements IView {
   @Nullable
   @BindView(R.id.startButton) Button startButton;
 
-  IPresenter presenter;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    presenter = new Presenter(this, getModel());
     createButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        presenter.addData("tran diep bang");
+        getPresenter().addData("tran diep bang");
       }
     });
 
     deleteButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        presenter.deleteData("tran diep bang");
+        getPresenter().deleteData("tran diep bang");
       }
     });
 
@@ -58,6 +55,11 @@ public class DemoActivity extends BaseActivity implements IView {
         startActivity(DemoGetDataActivity.newIntent(DemoActivity.this));
       }
     });
+  }
+
+  @Override
+  protected Presenter getPresenter() {
+    return new ActionPresenter(this, getModel());
   }
 
   @Override
