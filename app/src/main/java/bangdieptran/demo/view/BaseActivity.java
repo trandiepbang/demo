@@ -31,7 +31,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
   @Override
   public void setBaseView(Object view) {
     this.view = view;
-
   }
 
   @Override

@@ -10,7 +10,7 @@ import bangdieptran.demo.view.IBaseView;
 
 public interface IActionView extends IBaseView {
 
-  void sayHello2();
+  void sayHello();
 
   void onDataReturn(final List<String> data);
 

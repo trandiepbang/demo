@@ -70,7 +70,7 @@ public class DemoActivity extends BaseActivity implements IActionView {
   }
 
   @Override
-  public void sayHello2() {
+  public void sayHello() {
     Toast.makeText(getApplicationContext(), "Say hleloo", Toast.LENGTH_LONG).show();
   }
 
