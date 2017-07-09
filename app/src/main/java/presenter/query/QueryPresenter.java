@@ -7,7 +7,7 @@ import model.MvpModel;
  * Created by darklegend on 7/7/17.
  */
 
-public class QueryPresenter extends Presenter {
+public class QueryPresenter extends Presenter implements IQueryPresenter {
 
   private final IGetDataView iGetDataView;
 

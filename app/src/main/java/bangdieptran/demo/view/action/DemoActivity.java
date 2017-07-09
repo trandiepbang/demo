@@ -38,7 +38,7 @@ public class DemoActivity extends BaseActivity implements IView {
     createButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        getPresenter().addData("tran diep bang");
+        getPresenter().("tran diep bang");
       }
     });
 

@@ -1,12 +1,9 @@
 package presenter;
 
 /**
- * Created by darklegend on 7/6/17.
+ * Created by darklegend on 7/8/17.
  */
 
-public interface IPresenter {
+public class IPresenter {
 
-  void addData(final String title);
-
-  void deleteData(final String title);
 }
