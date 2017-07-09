@@ -39,7 +39,8 @@ public class DemoActivity extends BaseActivity implements IActionView {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    actionPresenter = new ActionPresenter(this, getModel());
+
+    actionPresenter = new ActionPresenter((IActionView) getBaseView(), getModel());
 
     createButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -72,5 +73,6 @@ public class DemoActivity extends BaseActivity implements IActionView {
   public void sayHello2() {
     Toast.makeText(getApplicationContext(), "Say hleloo", Toast.LENGTH_LONG).show();
   }
+
 
 }

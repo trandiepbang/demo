@@ -33,8 +33,7 @@ public class DemoGetDataActivity extends BaseActivity implements IQueryData {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    iPresenter = new QueryPresenter(this, getModel());
-
+    iPresenter = new QueryPresenter((IQueryData) getBaseView(), getModel());
     showButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -42,7 +41,6 @@ public class DemoGetDataActivity extends BaseActivity implements IQueryData {
       }
     });
   }
-
 
   @Override
   protected int getLayoutId() {

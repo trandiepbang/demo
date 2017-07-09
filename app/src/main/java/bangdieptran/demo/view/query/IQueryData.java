@@ -1,5 +1,7 @@
 package bangdieptran.demo.view.query;
 
+import java.util.List;
+
 import bangdieptran.demo.view.IBaseView;
 
 /**
@@ -9,4 +11,6 @@ import bangdieptran.demo.view.IBaseView;
 public interface IQueryData extends IBaseView {
 
   void sayHello();
+
+  void onDataReturn(final List<String> data);
 }

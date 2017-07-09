@@ -17,8 +17,11 @@ import java.util.List;
 public class MvpModel {
 
   private static final String DB_NAME = "bang_demo.db";
+
   private static final int DB_VERSION = 1;
+
   private static final String DB_TABLE_NAME = "bangbang";
+
   private final SQLiteOpenHelper helper;
 
   private static final String DB_CREATE_QUERY =

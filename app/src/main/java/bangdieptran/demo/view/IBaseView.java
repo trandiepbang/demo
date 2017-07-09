@@ -1,16 +1,14 @@
 package bangdieptran.demo.view;
 
-import java.util.List;
-
-
 /**
  * Created by darklegend on 7/7/17.
  */
 
-public interface IBaseView {
+public interface IBaseView<T> {
 
-  void onDataReturn(final List<String> data);
+  void setBaseView(T view);
 
-  void chaoBan();
+  T getBaseView();
 
+  void destoryBaseView();
 }

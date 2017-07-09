@@ -2,19 +2,18 @@ package presenter.action;
 
 import bangdieptran.demo.view.action.IActionView;
 import model.MvpModel;
-import presenter.Presenter;
 
 /**
  * Created by darklegend on 7/7/17.
  */
 
-public class ActionPresenter extends Presenter implements IActionPresenter {
+public class ActionPresenter implements IActionPresenter {
 
   private final IActionView iActionView;
+
   private final MvpModel mvpModel;
 
   public ActionPresenter(IActionView iActionView, MvpModel mvpModel) {
-    super(iActionView);
     this.iActionView = iActionView;
     this.mvpModel = mvpModel;
   }
@@ -32,4 +31,5 @@ public class ActionPresenter extends Presenter implements IActionPresenter {
     this.iActionView.onDataReturn(this.mvpModel.getTask());
     this.iActionView.sayHello2();
   }
+
 }
