@@ -5,7 +5,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical"
-  tools:context="bangdieptran.demo.view.DemoActivity">
+  tools:context="bangdieptran.demo.view.action.DemoActivity">
 
   <TextView
     android:id="@+id/data_created"

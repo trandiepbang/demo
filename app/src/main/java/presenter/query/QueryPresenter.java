@@ -1,7 +1,8 @@
-package presenter;
+package presenter.query;
 
-import bangdieptran.demo.view.IGetDataView;
+import bangdieptran.demo.view.query.IQueryData;
 import model.MvpModel;
+import presenter.Presenter;
 
 /**
  * Created by darklegend on 7/7/17.
@@ -9,11 +10,12 @@ import model.MvpModel;
 
 public class QueryPresenter extends Presenter implements IQueryPresenter {
 
-  private final IGetDataView iGetDataView;
+  private final IQueryData iGetDataView;
 
   private final MvpModel mvpModel;
 
-  public QueryPresenter(IGetDataView iGetDataView, MvpModel mvpModel) {
+  public QueryPresenter(IQueryData iGetDataView, MvpModel mvpModel) {
+    super(iGetDataView);
     this.iGetDataView = iGetDataView;
     this.mvpModel = mvpModel;
   }
@@ -21,5 +23,6 @@ public class QueryPresenter extends Presenter implements IQueryPresenter {
   @Override
   public void showData() {
     this.iGetDataView.onDataReturn(mvpModel.getTask());
+    this.iGetDataView.sayHello();
   }
 }

@@ -1,4 +1,4 @@
-package bangdieptran.demo.view;
+package bangdieptran.demo.view.query;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,15 +7,16 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import bangdieptran.demo.R;
+import bangdieptran.demo.view.BaseActivity;
 import butterknife.BindView;
-import presenter.Presenter;
-import presenter.QueryPresenter;
+import presenter.query.QueryPresenter;
 
-public class DemoGetDataActivity extends BaseActivity implements IGetDataView {
+public class DemoGetDataActivity extends BaseActivity implements IQueryData {
 
   @Nullable
   @BindView(R.id.showDataTextView) TextView showDataTextView;
@@ -27,21 +28,21 @@ public class DemoGetDataActivity extends BaseActivity implements IGetDataView {
     return new Intent(activity, DemoGetDataActivity.class);
   }
 
+  QueryPresenter iPresenter;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    iPresenter = new QueryPresenter(this, getModel());
+
     showButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        getPresenter().showData();
+        iPresenter.showData();
       }
     });
   }
 
-  @Override
-  protected Presenter getPresenter() {
-    return new QueryPresenter(this, getModel());
-  }
 
   @Override
   protected int getLayoutId() {
@@ -51,6 +52,11 @@ public class DemoGetDataActivity extends BaseActivity implements IGetDataView {
   @Override
   public void onDataReturn(List<String> data) {
     showDataTextView.setText(data.toString());
+  }
+
+  @Override
+  public void sayHello() {
+    Toast.makeText(getApplicationContext(), "Say Helllo", Toast.LENGTH_LONG).show();
   }
 
 }

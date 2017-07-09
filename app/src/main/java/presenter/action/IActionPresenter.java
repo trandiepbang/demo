@@ -4,7 +4,7 @@ package presenter.action;
  * Created by darklegend on 7/6/17.
  */
 
-public interface IPresenter {
+public interface IActionPresenter {
 
   void addData(final String title);
 

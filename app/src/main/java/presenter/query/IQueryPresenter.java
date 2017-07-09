@@ -1,4 +1,4 @@
-package presenter;
+package presenter.query;
 
 /**
  * Created by darklegend on 7/7/17.

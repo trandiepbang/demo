@@ -1,19 +1,21 @@
-package bangdieptran.demo.view;
+package bangdieptran.demo.view.action;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import bangdieptran.demo.R;
+import bangdieptran.demo.view.BaseActivity;
+import bangdieptran.demo.view.query.DemoGetDataActivity;
 import butterknife.BindView;
-import presenter.ActionPresenter;
-import presenter.Presenter;
+import presenter.action.ActionPresenter;
 
-public class DemoActivity extends BaseActivity implements IView {
+public class DemoActivity extends BaseActivity implements IActionView {
 
   @Override
   protected int getLayoutId() {
@@ -32,20 +34,24 @@ public class DemoActivity extends BaseActivity implements IView {
   @Nullable
   @BindView(R.id.startButton) Button startButton;
 
+  ActionPresenter actionPresenter;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    actionPresenter = new ActionPresenter(this, getModel());
+
     createButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        getPresenter().("tran diep bang");
+        actionPresenter.addData("tran diep bang");
       }
     });
 
     deleteButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        getPresenter().deleteData("tran diep bang");
+        actionPresenter.deleteData("tran diep bang");
       }
     });
 
@@ -58,12 +64,13 @@ public class DemoActivity extends BaseActivity implements IView {
   }
 
   @Override
-  protected Presenter getPresenter() {
-    return new ActionPresenter(this, getModel());
-  }
-
-  @Override
   public void onDataReturn(List<String> data) {
     dataCreatedText.setText(data.toString());
   }
+
+  @Override
+  public void sayHello2() {
+    Toast.makeText(getApplicationContext(), "Say hleloo", Toast.LENGTH_LONG).show();
+  }
+
 }
